@@ -1,0 +1,422 @@
+[
+  {
+    "id": 1,
+    "question": "What does Percy initially think Mrs. Dodds is?",
+    "answer": "A math teacher",
+    "wrong": [
+      "A librarian",
+      "A guidance counselor",
+      "A lunch lady"
+    ],
+    "book": 1,
+    "hint": "She substituted for his regular pre-algebra teacher"
+  },
+  {
+    "id": 2,
+    "question": "What is the name of Percy's magical sword?",
+    "answer": "Riptide",
+    "wrong": [
+      "Stormbreaker",
+      "Wavecrusher",
+      "Tsunami"
+    ],
+    "book": 1,
+    "hint": "In Greek, it's called Anaklusmos"
+  },
+  {
+    "id": 3,
+    "question": "What is the Oracle's home at Camp Half-Blood?",
+    "answer": "The Big House attic",
+    "wrong": [
+      "The Cave of Prophecies",
+      "The Temple of Apollo",
+      "The Forest of Whispers"
+    ],
+    "book": 1,
+    "hint": "A dusty place full of old quest trophies"
+  },
+  {
+    "id": 4,
+    "question": "Who is Percy's best friend and protector?",
+    "answer": "Grover Underwood",
+    "wrong": [
+      "Luke Castellan",
+      "Tyson",
+      "Charles Beckendorf"
+    ],
+    "book": 1,
+    "hint": "He's a satyr who loves enchiladas"
+  },
+  {
+    "id": 5,
+    "question": "What item does Annabeth own that makes her invisible?",
+    "answer": "Yankees Cap",
+    "wrong": [
+      "Invisibility Cloak",
+      "Magic Ring",
+      "Enchanted Scarf"
+    ],
+    "book": 1,
+    "hint": "A gift from her mother"
+  },
+  {
+    "id": 6,
+    "question": "What is the name of Percy's cyclops half-brother?",
+    "answer": "Tyson",
+    "wrong": [
+      "Grover",
+      "Polyphemus",
+      "Atlas"
+    ],
+    "book": 2,
+    "hint": "He works in the forges under the sea"
+  },
+  {
+    "id": 7,
+    "question": "What item does Percy need to save Camp Half-Blood in The Sea of Monsters?",
+    "answer": "The Golden Fleece",
+    "wrong": [
+      "The Master Bolt",
+      "The Helm of Darkness",
+      "Hermes' Caduceus"
+    ],
+    "book": 2,
+    "hint": "A magical item that heals and protects"
+  },
+  {
+    "id": 8,
+    "question": "What is the name of Luke's poisoned sword?",
+    "answer": "Backbiter",
+    "wrong": [
+      "Soulreaper",
+      "Kronos' Blade",
+      "Betrayer"
+    ],
+    "book": 2,
+    "hint": "It's made of both celestial bronze and mortal steel"
+  },
+  {
+    "id": 9,
+    "question": "What is Annabeth's fatal flaw?",
+    "answer": "Hubris",
+    "wrong": [
+      "Loyalty",
+      "Anger",
+      "Fear"
+    ],
+    "book": 3,
+    "hint": "Deadly pride"
+  },
+  {
+    "id": 10,
+    "question": "Who holds up the sky before Percy takes the burden?",
+    "answer": "Artemis",
+    "wrong": [
+      "Annabeth",
+      "Thalia",
+      "Zoe"
+    ],
+    "book": 3,
+    "hint": "The goddess of the hunt"
+  },
+  {
+    "id": 11,
+    "question": "What is the name of Percy's pegasus?",
+    "answer": "Blackjack",
+    "wrong": [
+      "Guido",
+      "Porkpie",
+      "Tempest"
+    ],
+    "book": 3,
+    "hint": "A black stallion with wings"
+  },
+  {
+    "id": 12,
+    "question": "What is the name of the labyrinth's creator?",
+    "answer": "Daedalus",
+    "wrong": [
+      "Minos",
+      "Icarus",
+      "Theseus"
+    ],
+    "book": 4,
+    "hint": "He goes by the name Quintus at Camp Half-Blood"
+  },
+  {
+    "id": 13,
+    "question": "What is Rachel's weapon against the skeleton warriors?",
+    "answer": "Blue plastic hairbrush",
+    "wrong": [
+      "Celestial bronze sword",
+      "Magic paintbrush",
+      "Bronze dagger"
+    ],
+    "book": 4,
+    "hint": "An ordinary item used in an extraordinary way"
+  },
+  {
+    "id": 14,
+    "question": "What is Percy's fatal flaw?",
+    "answer": "Personal loyalty",
+    "wrong": [
+      "Pride",
+      "Anger",
+      "Ambition"
+    ],
+    "book": 4,
+    "hint": "He would sacrifice the world to save a friend"
+  },
+  {
+    "id": 15,
+    "question": "What happens to Pan in The Battle of the Labyrinth?",
+    "answer": "He fades away",
+    "wrong": [
+      "He goes to Olympus",
+      "He becomes mortal",
+      "He turns into a tree"
+    ],
+    "book": 4,
+    "hint": "The end of the wild"
+  },
+  {
+    "id": 16,
+    "question": "What gift does Percy receive from his father for his 16th birthday?",
+    "answer": "Sand dollar",
+    "wrong": [
+      "Trident",
+      "Pearl",
+      "Seashell"
+    ],
+    "book": 5,
+    "hint": "He uses it to make a deal with a river spirit"
+  },
+  {
+    "id": 17,
+    "question": "Who betrays Camp Half-Blood by giving Luke information?",
+    "answer": "Silena Beauregard",
+    "wrong": [
+      "Clarisse La Rue",
+      "Chris Rodriguez",
+      "Travis Stoll"
+    ],
+    "book": 5,
+    "hint": "Daughter of Aphrodite"
+  },
+  {
+    "id": 18,
+    "question": "What is the name of Luke's mother?",
+    "answer": "May Castellan",
+    "wrong": [
+      "Maria di Angelo",
+      "Sally Jackson",
+      "Marie Levesque"
+    ],
+    "book": 5,
+    "hint": "She tried to become the Oracle"
+  },
+  {
+    "id": 19,
+    "question": "Who becomes the new Oracle?",
+    "answer": "Rachel Elizabeth Dare",
+    "wrong": [
+      "Annabeth Chase",
+      "Clarisse La Rue",
+      "Silena Beauregard"
+    ],
+    "book": 5,
+    "hint": "She could see through the Mist even as a mortal"
+  },
+  {
+    "id": 20,
+    "question": "What god helps Percy take a dip in the River Styx?",
+    "answer": "Nico di Angelo",
+    "wrong": [
+      "Hades",
+      "Charon",
+      "Thanatos"
+    ],
+    "book": 5,
+    "hint": "Son of Hades"
+  },
+  {
+    "id": 21,
+    "question": "Why does Percy need three letters of recommendation in The Chalice of the Gods?",
+    "answer": "To get into New Rome University",
+    "wrong": [
+      "To become a god",
+      "To join the Hunters of Artemis",
+      "To lead Camp Half-Blood"
+    ],
+    "book": 6,
+    "hint": "For college admission"
+  },
+  {
+    "id": 22,
+    "question": "What goes missing from Bacchus in The Chalice of the Gods?",
+    "answer": "His chalice",
+    "wrong": [
+      "His thyrsus",
+      "His leopard skin",
+      "His wine bottles"
+    ],
+    "book": 6,
+    "hint": "The title object"
+  },
+  {
+    "id": 23,
+    "question": "Who is the main antagonist in The Chalice of the Gods?",
+    "answer": "Ganymede",
+    "wrong": [
+      "Kronos",
+      "Atlas",
+      "Hyperion"
+    ],
+    "book": 6,
+    "hint": "Zeus's cupbearer"
+  },
+  {
+    "id": 24,
+    "question": "What is Percy studying for throughout The Chalice of the Gods?",
+    "answer": "SATs",
+    "wrong": [
+      "Driver's license",
+      "Swimming competition",
+      "Sword fighting tournament"
+    ],
+    "book": 6,
+    "hint": "A college entrance exam"
+  },
+  {
+    "id": 25,
+    "question": "What does Annabeth give Percy to help him study?",
+    "answer": "Flash cards",
+    "wrong": [
+      "Study guide",
+      "Textbook",
+      "Practice tests"
+    ],
+    "book": 6,
+    "hint": "A common study tool"
+  },
+  {
+    "id": 26,
+    "question": "Which goddess is primarily featured in Wrath of the Triple Goddess?",
+    "answer": "Hecate",
+    "wrong": [
+      "Artemis",
+      "Athena",
+      "Hera"
+    ],
+    "book": 7,
+    "hint": "Goddess of magic and crossroads"
+  },
+  {
+    "id": 27,
+    "question": "What form does Hecate most commonly take in the book?",
+    "answer": "Triple form",
+    "wrong": [
+      "Single woman",
+      "Black dog",
+      "Young girl"
+    ],
+    "book": 7,
+    "hint": "Three manifestations at once"
+  },
+  {
+    "id": 28,
+    "question": "What is Percy's second letter of recommendation for?",
+    "answer": "Helping Hecate",
+    "wrong": [
+      "Saving Olympus",
+      "Finding Zeus's bolt",
+      "Defeating Kronos"
+    ],
+    "book": 7,
+    "hint": "Part of his college application process"
+  },
+  {
+    "id": 29,
+    "question": "What magical creature helps Percy in his quest?",
+    "answer": "Empousai",
+    "wrong": [
+      "Cyclops",
+      "Harpy",
+      "Pegasus"
+    ],
+    "book": 7,
+    "hint": "Vampire-like creatures"
+  },
+  {
+    "id": 30,
+    "question": "What type of magic does Percy have to deal with most in the book?",
+    "answer": "Mist manipulation",
+    "wrong": [
+      "Water control",
+      "Time control",
+      "Weather manipulation"
+    ],
+    "book": 7,
+    "hint": "Hecate's specialty"
+  },
+  {
+    "id": 31,
+    "question": "What does Percy discover about the Mist in this book?",
+    "answer": "It's becoming unstable",
+    "wrong": [
+      "It's disappearing",
+      "It's turning solid",
+      "It's changing color"
+    ],
+    "book": 7,
+    "hint": "A major plot point involving Hecate's domain"
+  },
+  {
+    "id": 32,
+    "question": "Who helps Percy understand the nature of the Mist?",
+    "answer": "Rachel Elizabeth Dare",
+    "wrong": [
+      "Annabeth Chase",
+      "Grover Underwood",
+      "Chiron"
+    ],
+    "book": 7,
+    "hint": "She can see through it naturally"
+  },
+  {
+    "id": 33,
+    "question": "What is threatening the mortal world in this book?",
+    "answer": "The merging of magical and mortal realms",
+    "wrong": [
+      "A titan uprising",
+      "A giant invasion",
+      "A monster army"
+    ],
+    "book": 7,
+    "hint": "Related to the Mist's instability"
+  },
+  {
+    "id": 34,
+    "question": "What aspect of Hecate causes the most trouble?",
+    "answer": "Her dark aspect",
+    "wrong": [
+      "Her young aspect",
+      "Her mother aspect",
+      "Her wise aspect"
+    ],
+    "book": 7,
+    "hint": "One of her three forms"
+  },
+  {
+    "id": 35,
+    "question": "What must Percy prove to get his second letter?",
+    "answer": "His ability to handle magic responsibly",
+    "wrong": [
+      "His sword fighting skills",
+      "His leadership abilities",
+      "His swimming capabilities"
+    ],
+    "book": 7,
+    "hint": "Related to Hecate's domain"
+  }
+]
