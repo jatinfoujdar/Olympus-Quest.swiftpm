@@ -6,6 +6,7 @@ struct ContentView: View {
     @State private var audioPlayer: AVAudioPlayer?
     @State private var scalePlayButton = false
     @State private var moveBackgroundImage = false
+    @State private var animateViewIn = false
     
     var body: some View {
         GeometryReader { geo in
@@ -21,20 +22,25 @@ struct ContentView: View {
                     }
                 
                 VStack {
-                    VStack {
-                        Image(systemName: "bolt.fill")
-                            .font(.largeTitle)
-                            .imageScale(.large)
-                        
-                        Text("Olympus Quest")
-                            .font(.custom("PartyLetPlain", size: 70))
-                            .padding(.bottom, -50)
-                        
-                        Text("Trivia")
-                            .font(.custom("PartyLetPlain", size: 60))
+                    VStack{
+                        if animateViewIn {
+                            VStack {
+                                Image(systemName: "bolt.fill")
+                                    .font(.largeTitle)
+                                    .imageScale(.large)
+                                
+                                Text("Olympus Quest")
+                                    .font(.custom("PartyLetPlain", size: 70))
+                                    .padding(.bottom, -50)
+                                
+                                Text("Trivia")
+                                    .font(.custom("PartyLetPlain", size: 60))
+                            }
+                            .padding(.top, 70)
+                            .transition(.move(edge: .top))
+                        }
                     }
-                    .padding(.top, 70)
-                    
+                    .animation(.easeOut(duration: 0.7).delay(2), value: animateViewIn)
                     Spacer()
                     
                     VStack {
@@ -104,14 +110,16 @@ struct ContentView: View {
         }
         .ignoresSafeArea()
         .onAppear {
-            playAudio()
+            animateViewIn = true
+//            playAudio()
+            
         }
         .preferredColorScheme(.dark)
     }
     
     private func playAudio() {
         guard let soundURL = Bundle.main.url(forResource: "magicintheairr", withExtension: "mp3") else {
-            print("Audio file not found")
+//            print("Audio file not found")
             return
         }
         
