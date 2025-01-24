@@ -44,54 +44,75 @@ struct ContentView: View {
                     Spacer()
                     
                     VStack {
-                        Text("Recent Scores")
-                            .font(.title2)
-                            .padding()
-                        
-                        Text("33")
-                        Text("66")
-                        Text("66")
+                            if animateViewIn {
+                                VStack{
+                                Text("Recent Scores")
+                                    .font(.title2)
+                                    .padding()
+                                
+                                Text("33")
+                                Text("66")
+                                Text("66")
+                            }
+                                .font(.title3)
+                                .padding(.horizontal)
+                                .foregroundColor(.white)
+                                .background(.black.opacity(0.7))
+                                .cornerRadius(15)
+                                .transition(.opacity)
+                        }
                     }
-                    .font(.title3)
-                    .padding(.horizontal)
-                    .foregroundColor(.white)
-                    .background(.black.opacity(0.7))
-                    .cornerRadius(15)
-                    
+                    .animation(.linear(duration: 0.7).delay(2), value: animateViewIn)
                     Spacer()
+                    
                     HStack {
                         Spacer()
-                        Button {
-                            //instruction
-                        } label: {
-                            Image(systemName: "info.circle.fill")
-                                .font(.largeTitle)
-                                .foregroundColor(.white)
-                                .shadow(radius: 5)
-                        }
                         
-                        Spacer()
-                        
-                        Button {
-                            //start
-                        } label: {
-                            Text("Play")
-                                .font(.largeTitle)
-                                .foregroundColor(.white)
-                                .padding(.vertical, 7)
-                                .padding(.horizontal, 50)
-                                .background(.brown)
-                                .cornerRadius(7)
-                                .shadow(radius: 5)
-                        }
-                        .scaleEffect(scalePlayButton ? 1.2 : 1)
-                        .onAppear {
-                            withAnimation(.easeInOut(duration: 1.3).repeatForever()) {
-                                scalePlayButton.toggle()
+                        VStack{
+                            if animateViewIn {
+                                Button {
+                                    //instruction
+                                } label: {
+                                    Image(systemName: "info.circle.fill")
+                                        .font(.largeTitle)
+                                        .foregroundColor(.white)
+                                        .shadow(radius: 5)
+                                }
+                                .transition(.offset(x: -geo.size.height/4))
                             }
                         }
+                        .animation(.easeOut(duration: 0.7).delay(2), value: animateViewIn)
+                        
                         Spacer()
                         
+                        VStack{
+                            if animateViewIn {
+                                Button {
+                                    //start
+                                } label: {
+                                    Text("Play")
+                                        .font(.largeTitle)
+                                        .foregroundColor(.white)
+                                        .padding(.vertical, 7)
+                                        .padding(.horizontal, 50)
+                                        .background(.brown)
+                                        .cornerRadius(7)
+                                        .shadow(radius: 5)
+                                }
+                                .scaleEffect(scalePlayButton ? 1.2 : 1)
+                                .onAppear {
+                                    withAnimation(.easeInOut(duration: 1.3).repeatForever()) {
+                                        scalePlayButton.toggle()
+                                    }
+                                }
+                                .transition(.offset(y: geo.size.height/3))
+                            }
+                        }
+                        .animation(.easeOut(duration: 0.7).delay(2), value: animateViewIn)
+                        
+                        Spacer()
+                        VStack{
+                            if animateViewIn {
                         Button {
                             
                         } label: {
@@ -100,6 +121,10 @@ struct ContentView: View {
                                 .foregroundColor(.white)
                                 .shadow(radius: 5)
                         }
+                        .transition(.offset(x: geo.size.height/4))
+                    }
+                }
+                .animation(.easeOut(duration: 0.7).delay(2), value: animateViewIn)
                         Spacer()
                     }
                     .frame(width: geo.size.width)
