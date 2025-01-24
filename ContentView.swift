@@ -31,10 +31,29 @@ struct ContentView: View {
                                 
                                 Text("Olympus Quest")
                                     .font(.custom("PartyLetPlain", size: 70))
-                                    .padding(.bottom, -50)
+                                    .overlay(
+                                        LinearGradient(
+                                            gradient: Gradient(colors: [.orange, .red, .purple, .blue]),
+                                            startPoint: .leading,
+                                            endPoint: .trailing
+                                        )
+                                        .mask(Text("Olympus Quest")
+                                            .font(.custom("PartyLetPlain", size: 70))
+                                        )
+                                    )
                                 
                                 Text("Trivia")
                                     .font(.custom("PartyLetPlain", size: 60))
+                                    .overlay(
+                                        LinearGradient(
+                                            gradient: Gradient(colors: [.orange, .red, .purple, .blue]),
+                                            startPoint: .leading,
+                                            endPoint: .trailing
+                                        )
+                                        .mask(Text("Trivia")
+                                            .font(.custom("PartyLetPlain", size: 60))
+                                        )
+                                    )
                             }
                             .padding(.top, 70)
                             .transition(.move(edge: .top))
@@ -44,8 +63,8 @@ struct ContentView: View {
                     Spacer()
                     
                     VStack {
-                            if animateViewIn {
-                                VStack{
+                        if animateViewIn {
+                            VStack{
                                 Text("Recent Scores")
                                     .font(.title2)
                                     .padding()
@@ -54,12 +73,12 @@ struct ContentView: View {
                                 Text("66")
                                 Text("66")
                             }
-                                .font(.title3)
-                                .padding(.horizontal)
-                                .foregroundColor(.white)
-                                .background(.black.opacity(0.7))
-                                .cornerRadius(15)
-                                .transition(.opacity)
+                            .font(.title3)
+                            .padding(.horizontal)
+                            .foregroundColor(.white)
+                            .background(.black.opacity(0.7))
+                            .cornerRadius(15)
+                            .transition(.opacity)
                         }
                     }
                     .animation(.linear(duration: 0.7).delay(2), value: animateViewIn)
@@ -111,20 +130,21 @@ struct ContentView: View {
                         .animation(.easeOut(duration: 0.7).delay(2), value: animateViewIn)
                         
                         Spacer()
+                        
                         VStack{
                             if animateViewIn {
-                        Button {
-                            
-                        } label: {
-                            Image(systemName: "gearshape.fill")
-                                .font(.largeTitle)
-                                .foregroundColor(.white)
-                                .shadow(radius: 5)
+                                Button {
+                                    
+                                } label: {
+                                    Image(systemName: "gearshape.fill")
+                                        .font(.largeTitle)
+                                        .foregroundColor(.white)
+                                        .shadow(radius: 5)
+                                }
+                                .transition(.offset(x: geo.size.height/4))
+                            }
                         }
-                        .transition(.offset(x: geo.size.height/4))
-                    }
-                }
-                .animation(.easeOut(duration: 0.7).delay(2), value: animateViewIn)
+                        .animation(.easeOut(duration: 0.7).delay(2), value: animateViewIn)
                         Spacer()
                     }
                     .frame(width: geo.size.width)
@@ -136,8 +156,7 @@ struct ContentView: View {
         .ignoresSafeArea()
         .onAppear {
             animateViewIn = true
-//            playAudio()
-            
+            // playAudio()
         }
         .preferredColorScheme(.dark)
     }
