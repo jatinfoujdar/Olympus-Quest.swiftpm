@@ -20,6 +20,7 @@ struct Setting: View {
                     .font(.title)
                     .multilineTextAlignment(.center)
                     .foregroundColor(.white)
+                    .padding()
                 
                 
                 ScrollView{
@@ -39,6 +40,9 @@ struct Setting: View {
                                         .shadow(radius: 1)
                                         .padding(3)
                                 }
+                                .onTapGesture{
+                                    books[i] = .inactive
+                                }
                             } else if books[i] == .inactive{
                                 
                                 ZStack(alignment: .bottomTrailing){
@@ -55,6 +59,9 @@ struct Setting: View {
                                         .shadow(radius: 1)
                                         .padding(3)
                                 }
+                                .onTapGesture{
+                                    books[i] = .active
+                                }
                             }else {
                                 ZStack{
                                     Image("hp\(i+1)")
@@ -69,6 +76,7 @@ struct Setting: View {
                                         .shadow(color: .white.opacity(0.75), radius: 3)
                                         .padding(3)
                                 }
+                                
                             }
                         }
                     }
