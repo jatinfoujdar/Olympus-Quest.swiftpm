@@ -160,7 +160,7 @@ struct ContentView: View {
         .ignoresSafeArea()
         .onAppear {
             animateViewIn = true
-             playAudio()
+//             playAudio()
         }
         .preferredColorScheme(.dark)
     }
