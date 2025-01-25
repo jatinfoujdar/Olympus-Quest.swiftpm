@@ -22,8 +22,14 @@ struct Gameplay: View {
                         Text("Score: 55")
                     }
                     .padding()
+                    .padding(.vertical,30)
+                    
                     Text("Who is Percy Jackson?")
                         .font(.custom(Constant.hpFont, size: 50))
+                        .multilineTextAlignment(.center)
+                        .padding()
+                   
+                    Spacer()
                     
                     HStack{
                         Image(systemName: "questionmark.app.fill")
@@ -49,6 +55,21 @@ struct Gameplay: View {
                             .padding()
                             .padding(.trailing,20)
                     }
+                    .padding()
+                    
+                    LazyVGrid(columns: [GridItem(), GridItem()]){
+                        ForEach(1..<5) { i in
+                            Text("Answer \(i)")
+                                .minimumScaleFactor(0.5)
+                                .multilineTextAlignment(.center)
+                                .padding(10)
+                                .frame(width: geo.size.width/2.15, height: 80)
+                                .background(.green.opacity(0.5))
+                                .cornerRadius(25)
+                            
+                        }
+                    }
+                    Spacer()
                 }
                 .frame(width: geo.size.width, height: geo.size.height)
                 .foregroundColor(.white)
