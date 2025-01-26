@@ -100,11 +100,53 @@ struct Gameplay: View {
                 }
                 .frame(width: geo.size.width, height: geo.size.height)
                 .foregroundColor(.white)
+                
+                VStack{
+                    Spacer()
+                    
+                    Text("5")
+                        .font(.largeTitle)
+                        .padding(.top,50)
+                    Spacer()
+                    
+                    Text("Brilliant!")
+                        .font(.custom(Constant.hpFont, size: 100))
+                    
+                    Spacer()
+                    
+                    Text("Answer 1")
+                        .minimumScaleFactor(0.5)
+                        .multilineTextAlignment(.center)
+                        .padding()
+                        .frame(width: geo.size.width/2.15, height: 80)
+                        .background(.green.opacity(0.5))
+                        .cornerRadius(25)
+                        .scaleEffect(2)
+                    Group{
+                        Spacer()
+                        Spacer()
+                    }
+                        Button("Next Level"){
+                            
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .tint(.blue.opacity(0.5))
+                        .font(.largeTitle)
+                   
+                    Group{
+                        Spacer()
+                        Spacer()
+                    }
+                }
+                .foregroundStyle(.white)
+        
+    
+                
             }
             .frame(width: geo.size.width, height: geo.size.height)
         }
         .onAppear{
-            animationViewIn = true
+//            animationViewIn = true
         }
         .ignoresSafeArea()
         
