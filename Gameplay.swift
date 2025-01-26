@@ -13,6 +13,7 @@ struct Gameplay: View {
                     .overlay(Rectangle().foregroundColor(.black.opacity(0.8)))
                 
                 VStack{
+                    
                     HStack{
                         Button("End Game"){
                             
@@ -92,7 +93,7 @@ struct Gameplay: View {
                                         .transition(.offset(x: -geo.size.width/2))
                                 }
                             }
-                            .animation(.easeOut(duration: 1.5).delay(2), value: animationViewIn)
+                            .animation(.easeOut(duration: 1).delay(1.5), value: animationViewIn)
                         }
                     }
                     Spacer()
