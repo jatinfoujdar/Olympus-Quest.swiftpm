@@ -3,6 +3,7 @@ import SwiftUI
 struct Gameplay: View {
     
     @State private var animationViewIn = false
+    @State private var tappedCorrectAnswer = false
     
     var body: some View {
         GeometryReader{geo in
@@ -104,13 +105,26 @@ struct Gameplay: View {
                 VStack{
                     Spacer()
                     
-                    Text("5")
-                        .font(.largeTitle)
-                        .padding(.top,50)
+                    VStack{
+                        if tappedCorrectAnswer{
+                            Text("5")
+                                .font(.largeTitle)
+                                .padding(.top,50)
+                                .transition(.offset(y: -geo.size.height/4))
+                        }
+                    }
+                        .animation(.easeInOut(duration: 1).delay(2), value: tappedCorrectAnswer )
+                    
                     Spacer()
                     
-                    Text("Brilliant!")
-                        .font(.custom(Constant.hpFont, size: 100))
+                    VStack{
+                        if tappedCorrectAnswer{
+                            Text("Brilliant!")
+                                .font(.custom(Constant.hpFont, size: 100))
+                                .transition(.scale.combined(with: .offset(y: -geo.size.height/2)))
+                        }
+                    }
+                    .animation(.easeInOut(duration: 1).delay(1), value: tappedCorrectAnswer)
                     
                     Spacer()
                     
@@ -126,13 +140,20 @@ struct Gameplay: View {
                         Spacer()
                         Spacer()
                     }
-                        Button("Next Level"){
-                            
+                    
+                    VStack{
+                        if tappedCorrectAnswer{
+                            Button("Next Level"){
+                                
+                            }
+                            .buttonStyle(.borderedProminent)
+                            .tint(.blue.opacity(0.5))
+                            .font(.largeTitle)
+                            .transition(.scale.combined(with: .offset(y: geo.size.height/2)))
                         }
-                        .buttonStyle(.borderedProminent)
-                        .tint(.blue.opacity(0.5))
-                        .font(.largeTitle)
-                   
+                    }
+                    .animation(.easeInOut(duration: 1).delay(1), value: tappedCorrectAnswer)
+                    
                     Group{
                         Spacer()
                         Spacer()
@@ -147,6 +168,7 @@ struct Gameplay: View {
         }
         .onAppear{
 //            animationViewIn = true
+            tappedCorrectAnswer = true
         }
         .ignoresSafeArea()
         
