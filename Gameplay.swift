@@ -149,10 +149,10 @@ struct Gameplay: View {
                             .buttonStyle(.borderedProminent)
                             .tint(.blue.opacity(0.5))
                             .font(.largeTitle)
-                            .transition(.scale.combined(with: .offset(y: geo.size.height/2)))
+                            .transition(.scale.combined(with: .offset(y: geo.size.height/3)))
                         }
                     }
-                    .animation(.easeInOut(duration: 1).delay(1), value: tappedCorrectAnswer)
+                    .animation(.easeInOut(duration: 2.7).delay(2.7), value: tappedCorrectAnswer)
                     
                     Group{
                         Spacer()
