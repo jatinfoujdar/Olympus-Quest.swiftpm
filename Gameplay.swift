@@ -1,12 +1,15 @@
 import SwiftUI
 
 struct Gameplay: View {
+    @Environment(\.dismiss) private var dismiss
     
     @State private var animationViewIn = false
     @State private var tappedCorrectAnswer = false
     @State private var hintWiggle = false
     @State private var scaleNextButton = false
     @State private var movePoints = false
+    @State private var revealHint = false
+    @State private var revealBooks = false
     
     var body: some View {
         GeometryReader{geo in
@@ -20,7 +23,7 @@ struct Gameplay: View {
                     
                     HStack{
                         Button("End Game"){
-                            
+                            dismiss()
                         }
                         .buttonStyle(.borderedProminent)
                         .tint(.red.opacity(0.5))
@@ -60,12 +63,29 @@ struct Gameplay: View {
                                     .transition(.offset(x: -geo.size.width/2))
                                     .onAppear {
                                         withAnimation(                                           .easeInOut(duration: 0.1)
-                                                .repeatCount(9)
-                                                .delay(5)
-                                                .repeatForever()){
-                                                    hintWiggle = true
-                                                }
+                                            .repeatCount(9)
+                                            .delay(5)
+                                            .repeatForever()){
+                                                hintWiggle = true
+                                            }
                                     }
+                                    .onTapGesture {
+                                        withAnimation(.easeInOut(duration: 1)){
+                                            revealHint = true
+                                        }
+                                    }
+                                    .rotation3DEffect(.degrees(revealHint ? 1440 : 0), axis: (x: 0, y: 1, z: 0))
+                                    .scaleEffect(revealHint ? 5 : 1)
+                                    .opacity(revealHint ? 0 : 1)
+                                    .offset(x: revealHint ? geo.size.width/2 : 0)
+                                    .overlay(
+                                        Text("The Boy Who _______")
+                                            .padding(.leading,33)
+                                            .minimumScaleFactor(0.5)
+                                            .multilineTextAlignment(.center)
+                                            .opacity(revealHint ? 1 : 0)
+                                            .scaleEffect(revealHint ? 1.33 : 1)
+                                    )
                             }
                         }
                         .animation(.easeOut(duration: 1.5).delay(2), value: animationViewIn)
@@ -93,6 +113,24 @@ struct Gameplay: View {
                                                     hintWiggle = true
                                                 }
                                     }
+                                    .onTapGesture {
+                                        withAnimation(.easeInOut(duration: 1)){
+                                            revealBooks = true
+                                        }
+                                    }
+                                    .rotation3DEffect(.degrees(revealBooks ? 1440 : 0), axis: (x: 0, y: 1, z: 0))
+                                    .scaleEffect(revealBooks ? 5 : 1)
+                                    .opacity(revealBooks ? 0 : 1)
+                                    .offset(x: revealBooks ? -geo.size.width/2 : 0)
+                                    .overlay(
+                                        Image("hp1")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .padding(.trailing,33)
+                                            .opacity(revealBooks ? 1 : 0)
+                                            .scaleEffect(revealBooks ? 1.33 : 1)
+                                    )
+                                   
                             }
                         }
                         .animation(.easeOut(duration: 1.5).delay(2), value: animationViewIn)
@@ -111,7 +149,7 @@ struct Gameplay: View {
                                         .background(.green.opacity(0.5))
                                         .cornerRadius(25)
                                         .transition(.offset(x: -geo.size.width/2))
-                                    
+                                       
                                 }
                             }
                             .animation(.easeOut(duration: 1).delay(1.5), value: animationViewIn)
@@ -204,8 +242,8 @@ struct Gameplay: View {
             .frame(width: geo.size.width, height: geo.size.height)
         }
         .onAppear{
-//            animationViewIn = true
-            tappedCorrectAnswer = true
+            animationViewIn = true
+//            tappedCorrectAnswer = true
         }
         .ignoresSafeArea()
         
