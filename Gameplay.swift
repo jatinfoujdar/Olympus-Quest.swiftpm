@@ -5,6 +5,7 @@ struct Gameplay: View {
     @State private var animationViewIn = false
     @State private var tappedCorrectAnswer = false
     @State private var hintWiggle = false
+    @State private var scaleNextButton = false
     
     var body: some View {
         GeometryReader{geo in
@@ -172,6 +173,12 @@ struct Gameplay: View {
                             .tint(.blue.opacity(0.5))
                             .font(.largeTitle)
                             .transition(.scale.combined(with: .offset(y: geo.size.height/3)))
+                            .scaleEffect(scaleNextButton ? 1.2 : 1)
+                            .onAppear {
+                                withAnimation(.easeInOut(duration: 1.3).repeatForever()) {
+                                    scaleNextButton.toggle()
+                                }
+                            }
                         }
                     }
                     .animation(.easeInOut(duration: 2.7).delay(2.7), value: tappedCorrectAnswer)
@@ -189,8 +196,8 @@ struct Gameplay: View {
             .frame(width: geo.size.width, height: geo.size.height)
         }
         .onAppear{
-            animationViewIn = true
-//            tappedCorrectAnswer = true
+//            animationViewIn = true
+            tappedCorrectAnswer = true
         }
         .ignoresSafeArea()
         
