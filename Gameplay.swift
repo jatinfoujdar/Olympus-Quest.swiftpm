@@ -6,6 +6,7 @@ struct Gameplay: View {
     @State private var tappedCorrectAnswer = false
     @State private var hintWiggle = false
     @State private var scaleNextButton = false
+    @State private var movePoints = false
     
     var body: some View {
         GeometryReader{geo in
@@ -130,6 +131,13 @@ struct Gameplay: View {
                                 .font(.largeTitle)
                                 .padding(.top,50)
                                 .transition(.offset(y: -geo.size.height/4))
+                                .offset(x: movePoints ? geo.size.width/2.3 : 0 , y: movePoints ? -geo.size.height/13 : 0)
+                                .opacity(movePoints ? 0 : 1)
+                                .onAppear{
+                                    withAnimation(.easeInOut(duration: 1).delay(3)){
+                                        movePoints = true
+                                    }
+                                }
                         }
                     }
                         .animation(.easeInOut(duration: 1).delay(2), value: tappedCorrectAnswer )
