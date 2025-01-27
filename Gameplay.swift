@@ -4,6 +4,7 @@ struct Gameplay: View {
     
     @State private var animationViewIn = false
     @State private var tappedCorrectAnswer = false
+    @State private var hintWiggle = false
     
     var body: some View {
         GeometryReader{geo in
@@ -51,10 +52,18 @@ struct Gameplay: View {
                                     .scaledToFit()
                                     .frame(width: 100)
                                     .foregroundStyle(.cyan)
-                                    .rotationEffect(.degrees(-15))
+                                    .rotationEffect(.degrees(hintWiggle ? -13 : -17))
                                     .padding()
                                     .padding(.leading,20)
                                     .transition(.offset(x: -geo.size.width/2))
+                                    .onAppear {
+                                        withAnimation(                                           .easeInOut(duration: 0.1)
+                                                .repeatCount(9)
+                                                .delay(5)
+                                                .repeatForever()){
+                                                    hintWiggle = true
+                                                }
+                                    }
                             }
                         }
                         .animation(.easeOut(duration: 1.5).delay(2), value: animationViewIn)
@@ -70,10 +79,18 @@ struct Gameplay: View {
                                     .frame(width: 100, height: 100)
                                     .background(.cyan)
                                     .cornerRadius(20)
-                                    .rotationEffect(.degrees(15))
+                                    .rotationEffect(.degrees(hintWiggle ? 13 : 17))
                                     .padding()
                                     .padding(.trailing,20)
                                     .transition(.offset(x: geo.size.width/2))
+                                    .onAppear {
+                                        withAnimation(                                           .easeInOut(duration: 0.1)
+                                                .repeatCount(9)
+                                                .delay(5)
+                                                .repeatForever()){
+                                                    hintWiggle = true
+                                                }
+                                    }
                             }
                         }
                         .animation(.easeOut(duration: 1.5).delay(2), value: animationViewIn)
@@ -92,6 +109,7 @@ struct Gameplay: View {
                                         .background(.green.opacity(0.5))
                                         .cornerRadius(25)
                                         .transition(.offset(x: -geo.size.width/2))
+                                    
                                 }
                             }
                             .animation(.easeOut(duration: 1).delay(1.5), value: animationViewIn)
@@ -128,14 +146,18 @@ struct Gameplay: View {
                     
                     Spacer()
                     
-                    Text("Answer 1")
-                        .minimumScaleFactor(0.5)
-                        .multilineTextAlignment(.center)
-                        .padding()
-                        .frame(width: geo.size.width/2.15, height: 80)
-                        .background(.green.opacity(0.5))
-                        .cornerRadius(25)
-                        .scaleEffect(2)
+                    if tappedCorrectAnswer{
+                        Text("Answer 1")
+                            .minimumScaleFactor(0.5)
+                            .multilineTextAlignment(.center)
+                            .padding()
+                            .frame(width: geo.size.width/2.15, height: 80)
+                            .background(.green.opacity(0.5))
+                            .cornerRadius(25)
+                            .scaleEffect(2)
+                    }
+                        
+                    
                     Group{
                         Spacer()
                         Spacer()
@@ -167,8 +189,8 @@ struct Gameplay: View {
             .frame(width: geo.size.width, height: geo.size.height)
         }
         .onAppear{
-//            animationViewIn = true
-            tappedCorrectAnswer = true
+            animationViewIn = true
+//            tappedCorrectAnswer = true
         }
         .ignoresSafeArea()
         
