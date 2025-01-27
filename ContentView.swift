@@ -29,6 +29,7 @@ struct ContentView: View {
                         if animateViewIn {
                             VStack {
                                 Image(systemName: "bolt.fill")
+                                    .foregroundStyle(.yellow)
                                     .font(.largeTitle)
                                     .imageScale(.large)
                                 
@@ -118,20 +119,26 @@ struct ContentView: View {
                                     Text("Play")
                                         .font(.largeTitle)
                                         .foregroundColor(.white)
-                                        .padding(.vertical, 7)
+                                        .padding(.vertical, 15)
                                         .padding(.horizontal, 50)
-                                        .background(.brown)
-                                        .cornerRadius(7)
-                                        .shadow(radius: 5)
+                                        .background(
+                                            LinearGradient(
+                                                gradient: Gradient(colors: [.blue, .purple]),
+                                                startPoint: .leading,
+                                                endPoint: .trailing
+                                            )
+                                        )
+                                        .cornerRadius(15)
+                                        .shadow(color: .black.opacity(0.5), radius: 10, x: 0, y: 5)
                                 }
-                                .scaleEffect(scalePlayButton ? 1.2 : 1)
+                                .scaleEffect(scalePlayButton ? 1.1 : 1)
                                 .onAppear {
                                     withAnimation(.easeInOut(duration: 1.3).repeatForever()) {
                                         scalePlayButton.toggle()
                                     }
                                 }
-                                .transition(.offset(y: geo.size.height/3))
-                                .fullScreenCover(isPresented: $playGame){
+                                .transition(.offset(y: geo.size.height / 3))
+                                .fullScreenCover(isPresented: $playGame) {
                                     Gameplay()
                                 }
                             }

@@ -14,7 +14,7 @@ struct Gameplay: View {
     var body: some View {
         GeometryReader{geo in
             ZStack{
-                Image(.hogwarts)
+                Image("hogwarts")
                     .resizable()
                     .frame(width: geo.size.width * 3 , height: geo.size.height * 1.05)
                     .overlay(Rectangle().foregroundColor(.black.opacity(0.8)))
