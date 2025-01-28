@@ -178,10 +178,11 @@ struct Gameplay: View {
                                             .transition(.scale)
                                             .onTapGesture {
                                                 withAnimation(.easeOut(duration: 0.3)) {
-                                                    wrongAnswerTapped.append(i) 
+                                                    wrongAnswerTapped.append(i)
                                                 }
                                             }
                                             .scaleEffect(wrongAnswerTapped.contains(i) ? 0.8 : 1)
+                                            .disabled(wrongAnswerTapped.contains(i))
                                     }
                                 }
                                 .animation(.easeOut(duration: 1).delay(1.5), value: animationViewIn)
