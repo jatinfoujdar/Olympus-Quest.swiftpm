@@ -255,7 +255,16 @@ struct Gameplay: View {
                     VStack{
                         if tappedCorrectAnswer{
                             Button("Next Level"){
+                                animationViewIn = false
+                                tappedCorrectAnswer = false
+                                revealBooks = false
+                                revealHint = false
+                                movePoints = false
+                                wrongAnswerTapped = []
                                 
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
+                                    animationViewIn = true
+                                }
                             }
                             .buttonStyle(.borderedProminent)
                             .tint(.blue.opacity(0.5))
