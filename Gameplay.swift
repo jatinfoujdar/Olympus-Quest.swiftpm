@@ -45,6 +45,7 @@ struct Gameplay: View {
                                 .multilineTextAlignment(.center)
                                 .padding()
                                 .transition(.scale)
+                                .opacity(tappedCorrectAnswer ? 0.1 : 1)
                         }
                     }
                     .animation(.easeInOut(duration: 2), value: animationViewIn)
@@ -65,7 +66,8 @@ struct Gameplay: View {
                                     .padding(.leading,20)
                                     .transition(.offset(x: -geo.size.width/2))
                                     .onAppear {
-                                        withAnimation(                                           .easeInOut(duration: 0.1)
+                                        withAnimation(
+                                            .easeInOut(duration: 0.1)
                                             .repeatCount(9)
                                             .delay(5)
                                             .repeatForever()){
@@ -89,6 +91,8 @@ struct Gameplay: View {
                                             .opacity(revealHint ? 1 : 0)
                                             .scaleEffect(revealHint ? 1.33 : 1)
                                     )
+                                    .opacity(tappedCorrectAnswer ? 0.1 : 1)
+                                    .disabled(tappedCorrectAnswer)
                             }
                         }
                         .animation(.easeOut(duration: 1.5).delay(2), value: animationViewIn)
@@ -134,7 +138,8 @@ struct Gameplay: View {
                                             .opacity(revealBooks ? 1 : 0)
                                             .scaleEffect(revealBooks ? 1.33 : 1)
                                     )
-                                
+                                    .opacity(tappedCorrectAnswer ? 0.1 : 1)
+                                    .disabled(tappedCorrectAnswer)
                             }
                         }
                         .animation(.easeOut(duration: 1.5).delay(2), value: animationViewIn)
@@ -182,7 +187,9 @@ struct Gameplay: View {
                                                 }
                                             }
                                             .scaleEffect(wrongAnswerTapped.contains(i) ? 0.8 : 1)
-                                            .disabled(wrongAnswerTapped.contains(i))
+                                            .disabled(tappedCorrectAnswer ||  wrongAnswerTapped.contains(i))
+                                            .opacity(tappedCorrectAnswer ? 0.1 : 1)
+                                            
                                     }
                                 }
                                 .animation(.easeOut(duration: 1).delay(1.5), value: animationViewIn)
