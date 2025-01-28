@@ -10,7 +10,8 @@ struct Gameplay: View {
     @State private var movePoints = false
     @State private var revealHint = false
     @State private var revealBooks = false
-
+    @State private var wrongAnswerTapped : [Int] = []
+    
     let tempAnswers = [true,false,false,false]
     
     var body: some View {
@@ -47,7 +48,7 @@ struct Gameplay: View {
                         }
                     }
                     .animation(.easeInOut(duration: 2), value: animationViewIn)
-                                       
+                    
                     Spacer()
                     
                     
@@ -108,12 +109,13 @@ struct Gameplay: View {
                                     .padding(.trailing,20)
                                     .transition(.offset(x: geo.size.width/2))
                                     .onAppear {
-                                        withAnimation(                                           .easeInOut(duration: 0.1)
-                                                .repeatCount(9)
-                                                .delay(5)
-                                                .repeatForever()){
-                                                    hintWiggle = true
-                                                }
+                                        withAnimation(
+                                            .easeInOut(duration: 0.1)
+                                            .repeatCount(9)
+                                            .delay(5)
+                                            .repeatForever()){
+                                                hintWiggle = true
+                                            }
                                     }
                                     .onTapGesture {
                                         withAnimation(.easeInOut(duration: 1)){
@@ -132,7 +134,7 @@ struct Gameplay: View {
                                             .opacity(revealBooks ? 1 : 0)
                                             .scaleEffect(revealBooks ? 1.33 : 1)
                                     )
-                                   
+                                
                             }
                         }
                         .animation(.easeOut(duration: 1.5).delay(2), value: animationViewIn)
@@ -171,9 +173,15 @@ struct Gameplay: View {
                                             .multilineTextAlignment(.center)
                                             .padding(10)
                                             .frame(width: geo.size.width/2.15, height: 80)
-                                            .background(.green.opacity(0.5))
+                                            .background(wrongAnswerTapped.contains(i) ? .red.opacity(0.5) : .green.opacity(0.5))
                                             .cornerRadius(25)
-                                            .transition(.offset(x: -geo.size.width/2))
+                                            .transition(.scale)
+                                            .onTapGesture {
+                                                withAnimation(.easeOut(duration: 0.3)) {
+                                                    wrongAnswerTapped.append(i) 
+                                                }
+                                            }
+                                            .scaleEffect(wrongAnswerTapped.contains(i) ? 0.8 : 1)
                                     }
                                 }
                                 .animation(.easeOut(duration: 1).delay(1.5), value: animationViewIn)
@@ -203,7 +211,7 @@ struct Gameplay: View {
                                 }
                         }
                     }
-                        .animation(.easeInOut(duration: 1).delay(2), value: tappedCorrectAnswer )
+                    .animation(.easeInOut(duration: 1).delay(2), value: tappedCorrectAnswer )
                     
                     Spacer()
                     
@@ -229,7 +237,7 @@ struct Gameplay: View {
                             .scaleEffect(2)
                             .matchedGeometryEffect(id: "answer", in: namespace)
                     }
-                        
+                    
                     
                     Group{
                         Spacer()
@@ -261,15 +269,15 @@ struct Gameplay: View {
                     }
                 }
                 .foregroundStyle(.white)
-        
-    
+                
+                
                 
             }
             .frame(width: geo.size.width, height: geo.size.height)
         }
         .onAppear{
             animationViewIn = true
-//            tappedCorrectAnswer = true
+            //            tappedCorrectAnswer = true
         }
         .ignoresSafeArea()
         
