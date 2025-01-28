@@ -2,7 +2,7 @@ import SwiftUI
 
 struct Gameplay: View {
     @Environment(\.dismiss) private var dismiss
-    
+    @Namespace private var namespace
     @State private var animationViewIn = false
     @State private var tappedCorrectAnswer = false
     @State private var hintWiggle = false
@@ -10,6 +10,8 @@ struct Gameplay: View {
     @State private var movePoints = false
     @State private var revealHint = false
     @State private var revealBooks = false
+
+    let tempAnswers = [true,false,false,false]
     
     var body: some View {
         GeometryReader{geo in
@@ -139,20 +141,43 @@ struct Gameplay: View {
                     
                     LazyVGrid(columns: [GridItem(), GridItem()]){
                         ForEach(1..<5) { i in
-                            VStack{
-                                if animationViewIn{
-                                    Text("Answer \(i)")
-                                        .minimumScaleFactor(0.5)
-                                        .multilineTextAlignment(.center)
-                                        .padding(10)
-                                        .frame(width: geo.size.width/2.15, height: 80)
-                                        .background(.green.opacity(0.5))
-                                        .cornerRadius(25)
-                                        .transition(.offset(x: -geo.size.width/2))
-                                       
+                            if tempAnswers[i-1] == true {
+                                VStack{
+                                    if animationViewIn{
+                                        if tappedCorrectAnswer == false{
+                                            Text("Answer \(i)")
+                                                .minimumScaleFactor(0.5)
+                                                .multilineTextAlignment(.center)
+                                                .padding(10)
+                                                .frame(width: geo.size.width/2.15, height: 80)
+                                                .background(.green.opacity(0.5))
+                                                .cornerRadius(25)
+                                                .transition(.asymmetric(insertion: .scale, removal: .scale(scale: 5).combined(with: .opacity.animation(.easeOut(duration: 0.5)))))
+                                                .matchedGeometryEffect(id: "answer", in: namespace)
+                                                .onTapGesture {
+                                                    withAnimation(.easeOut(duration: 1)){
+                                                        tappedCorrectAnswer = true
+                                                    }
+                                                }
+                                        }
+                                    }
                                 }
+                                .animation(.easeOut(duration: 1).delay(1.5), value: animationViewIn)
+                            } else{
+                                VStack{
+                                    if animationViewIn{
+                                        Text("Answer \(i)")
+                                            .minimumScaleFactor(0.5)
+                                            .multilineTextAlignment(.center)
+                                            .padding(10)
+                                            .frame(width: geo.size.width/2.15, height: 80)
+                                            .background(.green.opacity(0.5))
+                                            .cornerRadius(25)
+                                            .transition(.offset(x: -geo.size.width/2))
+                                    }
+                                }
+                                .animation(.easeOut(duration: 1).delay(1.5), value: animationViewIn)
                             }
-                            .animation(.easeOut(duration: 1).delay(1.5), value: animationViewIn)
                         }
                     }
                     Spacer()
@@ -202,6 +227,7 @@ struct Gameplay: View {
                             .background(.green.opacity(0.5))
                             .cornerRadius(25)
                             .scaleEffect(2)
+                            .matchedGeometryEffect(id: "answer", in: namespace)
                     }
                         
                     
