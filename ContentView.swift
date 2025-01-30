@@ -2,6 +2,7 @@ import SwiftUI
 import AVKit
 
 struct ContentView: View {
+    @EnvironmentObject private var game : Game
     
     @State private var audioPlayer: AVAudioPlayer?
     @State private var scalePlayButton = false
@@ -140,6 +141,7 @@ struct ContentView: View {
                                 .transition(.offset(y: geo.size.height / 3))
                                 .fullScreenCover(isPresented: $playGame) {
                                     Gameplay()
+                                        .environmentObject(game)
                                 }
                             }
                         }
