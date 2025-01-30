@@ -9,7 +9,7 @@ enum BookStatus{
 struct Setting: View {
     
     @Environment(\.dismiss) private var dismiss
-    @State private var books: [BookStatus] = [.active, .active, .inactive, .locked, .locked, .locked, .locked]
+    @State private var books: [BookStatus] = [.active, .active, .inactive, .inactive, .inactive, .inactive, .inactive]
     
     var body: some View {
         ZStack{
