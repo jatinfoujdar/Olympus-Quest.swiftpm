@@ -1,34 +1,34 @@
 import SwiftUI
 
-enum BookStatus{
+enum BookStatus {
     case active
     case inactive
     case locked
 }
 
 struct Setting: View {
-    
     @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject private var game: Game
+    
     @State private var books: [BookStatus] = [.active, .active, .inactive, .inactive, .inactive, .inactive, .inactive]
     
     var body: some View {
-        ZStack{
+        ZStack {
             InfoBackgroundImage()
             
-            VStack{
-                Text("Which Books would like to see question from?")
+            VStack {
+                Text("Which Books would you like to see questions from?")
                     .font(.title)
                     .multilineTextAlignment(.center)
                     .foregroundColor(.white)
                     .padding()
                 
-                
-                ScrollView{
-                    LazyVGrid(columns: [GridItem(), GridItem()]){
-                        ForEach(0..<7){i in
-                            if books[i] == .active{
-                                ZStack(alignment: .bottomTrailing){
-                                    Image("hp\(i+1)")
+                ScrollView {
+                    LazyVGrid(columns: [GridItem(), GridItem()]) {
+                        ForEach(0..<7) { i in
+                            if books[i] == .active {
+                                ZStack(alignment: .bottomTrailing) {
+                                    Image("hp\(i + 1)")
                                         .resizable()
                                         .scaledToFit()
                                         .shadow(radius: 7)
@@ -40,13 +40,12 @@ struct Setting: View {
                                         .shadow(radius: 1)
                                         .padding(3)
                                 }
-                                .onTapGesture{
+                                .onTapGesture {
                                     books[i] = .inactive
                                 }
-                            } else if books[i] == .inactive{
-                                
-                                ZStack(alignment: .bottomTrailing){
-                                    Image("hp\(i+1)")
+                            } else if books[i] == .inactive {
+                                ZStack(alignment: .bottomTrailing) {
+                                    Image("hp\(i + 1)")
                                         .resizable()
                                         .scaledToFit()
                                         .shadow(radius: 7)
@@ -59,12 +58,12 @@ struct Setting: View {
                                         .shadow(radius: 1)
                                         .padding(3)
                                 }
-                                .onTapGesture{
+                                .onTapGesture {
                                     books[i] = .active
                                 }
-                            }else {
-                                ZStack{
-                                    Image("hp\(i+1)")
+                            } else {
+                                ZStack {
+                                    Image("hp\(i + 1)")
                                         .resizable()
                                         .scaledToFit()
                                         .shadow(radius: 7)
@@ -76,14 +75,14 @@ struct Setting: View {
                                         .shadow(color: .white.opacity(0.75), radius: 3)
                                         .padding(3)
                                 }
-                                
                             }
                         }
                     }
                     .padding()
                 }
                 
-                Button("Done"){
+                Button("Done") {
+                    game.updateBooks(books)
                     dismiss()
                 }
                 .doneButton()
@@ -94,4 +93,5 @@ struct Setting: View {
 
 #Preview {
     Setting()
+        .environmentObject(Game())
 }

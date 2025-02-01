@@ -2,7 +2,7 @@ import SwiftUI
 import AVKit
 
 struct ContentView: View {
-    @EnvironmentObject private var game : Game
+    @EnvironmentObject private var game: Game
     
     @State private var audioPlayer: AVAudioPlayer?
     @State private var scalePlayButton = false
@@ -26,7 +26,7 @@ struct ContentView: View {
                     }
                 
                 VStack {
-                    VStack{
+                    VStack {
                         if animateViewIn {
                             VStack {
                                 Image(systemName: "bolt.fill")
@@ -65,18 +65,19 @@ struct ContentView: View {
                         }
                     }
                     .animation(.easeOut(duration: 0.7).delay(2), value: animateViewIn)
+                    
                     Spacer()
                     
                     VStack {
                         if animateViewIn {
-                            VStack{
+                            VStack {
                                 Text("Recent Scores")
                                     .font(.title2)
                                     .padding()
                                 
-                                Text("33")
-                                Text("66")
-                                Text("66")
+                                ForEach(game.recentScore, id: \.self) { score in
+                                    Text("\(score)")
+                                }
                             }
                             .font(.title3)
                             .padding(.horizontal)
@@ -87,12 +88,13 @@ struct ContentView: View {
                         }
                     }
                     .animation(.linear(duration: 0.7).delay(2), value: animateViewIn)
+                    
                     Spacer()
                     
                     HStack {
                         Spacer()
                         
-                        VStack{
+                        VStack {
                             if animateViewIn {
                                 Button {
                                     showInstruction.toggle()
@@ -102,17 +104,17 @@ struct ContentView: View {
                                         .foregroundColor(.white)
                                         .shadow(radius: 5)
                                 }
-                                .transition(.offset(x: -geo.size.height/4))
-                                .sheet(isPresented: $showInstruction, content: {
+                                .transition(.offset(x: -geo.size.height / 4))
+                                .sheet(isPresented: $showInstruction) {
                                     Instructions()
-                                })
+                                }
                             }
                         }
                         .animation(.easeOut(duration: 0.7).delay(2), value: animateViewIn)
                         
                         Spacer()
                         
-                        VStack{
+                        VStack {
                             if animateViewIn {
                                 Button {
                                     playGame.toggle()
@@ -149,7 +151,7 @@ struct ContentView: View {
                         
                         Spacer()
                         
-                        VStack{
+                        VStack {
                             if animateViewIn {
                                 Button {
                                     showSetting.toggle()
@@ -159,16 +161,19 @@ struct ContentView: View {
                                         .foregroundColor(.white)
                                         .shadow(radius: 5)
                                 }
-                                .transition(.offset(x: geo.size.height/4))
-                                .sheet(isPresented: $showSetting, content: {
+                                .transition(.offset(x: geo.size.height / 4))
+                                .sheet(isPresented: $showSetting) {
                                     Setting()
-                                })
+                                        .environmentObject(game)
+                                }
                             }
                         }
                         .animation(.easeOut(duration: 0.7).delay(2), value: animateViewIn)
+                        
                         Spacer()
                     }
                     .frame(width: geo.size.width)
+                    
                     Spacer()
                 }
             }
@@ -177,16 +182,14 @@ struct ContentView: View {
         .ignoresSafeArea()
         .onAppear {
             animateViewIn = true
-//             playAudio()
+//            playAudio()
         }
         .preferredColorScheme(.dark)
     }
-
-
     
     private func playAudio() {
-        guard let soundURL = Bundle.main.url(forResource: "magicintheairr", withExtension: "mp3") else {
-
+        guard let soundURL = Bundle.main.url(forResource: "magicintheair", withExtension: "mp3") else {
+            print("Audio file not found")
             return
         }
         
@@ -199,4 +202,3 @@ struct ContentView: View {
         }
     }
 }
-

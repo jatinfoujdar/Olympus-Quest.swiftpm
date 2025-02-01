@@ -27,7 +27,7 @@ struct Question: Codable{
         
         book = try container.decode(Int.self, forKey: .book)
         
-        hint = try container.decode(String.self, forKey: .question)
+        hint = try container.decode(String.self, forKey: .hint)
         
         let correctAnswer = try container.decode(String.self, forKey: .answer)
         answers[correctAnswer] = true

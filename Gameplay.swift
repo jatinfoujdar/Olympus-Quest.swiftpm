@@ -1,6 +1,7 @@
 import SwiftUI
 import AVKit
 
+
 struct Gameplay: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var game : Game
@@ -85,7 +86,7 @@ struct Gameplay: View {
                                         withAnimation(.easeInOut(duration: 1)){
                                             revealHint = true
                                         }
-                                         playFlipSound()
+                                        playFlipSound()
                                     }
                                     .rotation3DEffect(.degrees(revealHint ? 1440 : 0), axis: (x: 0, y: 1, z: 0))
                                     .scaleEffect(revealHint ? 5 : 1)
@@ -133,7 +134,7 @@ struct Gameplay: View {
                                         withAnimation(.easeInOut(duration: 1)){
                                             revealBooks = true
                                         }
-                                                playFlipSound()
+                                        playFlipSound()
                                     }
                                     .rotation3DEffect(.degrees(revealBooks ? 1440 : 0), axis: (x: 0, y: 1, z: 0))
                                     .scaleEffect(revealBooks ? 5 : 1)
@@ -305,7 +306,7 @@ struct Gameplay: View {
         }
         .onAppear{
             animationViewIn = true
-                        playMusic()
+            playMusic()
         }
         .ignoresSafeArea()
     }
@@ -374,9 +375,7 @@ struct Gameplay: View {
             print("Error playing correct sound: \(error)")
         }
     }
-  
 }
-
 
 
 

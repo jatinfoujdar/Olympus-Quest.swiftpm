@@ -62,6 +62,7 @@ struct Instructions: View {
     }
 }
 
-#Preview{
+#Preview {
     Instructions()
+        .environmentObject(Game())
 }
