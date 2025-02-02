@@ -1,4 +1,6 @@
 import Foundation
+import SwiftUI
+
 
 @MainActor
 class Game: ObservableObject {
@@ -19,7 +21,13 @@ class Game: ObservableObject {
     
     init() {
         decodeQuestions()
+        // Set the initial answers based on the preview question
+        for answer in currentQuestion.answers.keys {
+            answers.append(answer)
+        }
+        answers.shuffle()
     }
+
     
     func startGame() {
         gameScore = 0
@@ -59,11 +67,18 @@ class Game: ObservableObject {
         }
         answers.shuffle()
         questionScore = 5
+        
+        // Debug print
+        print("Current Question: \(currentQuestion.question)")
+        print("Answers: \(answers)")
     }
+    
     
     func correct() {
         answeredQuestions.append(currentQuestion.id)
-        gameScore += questionScore
+        withAnimation{
+               gameScore += questionScore
+        }
     }
     
     func endGame() {

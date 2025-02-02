@@ -20,7 +20,7 @@ struct Gameplay: View {
     @State private var revealBooks = false
     @State private var wrongAnswerTapped : [Int] = []
     
-    let tempAnswers = [true,false,false,false]
+ 
     
     var body: some View {
         GeometryReader{geo in
@@ -48,7 +48,7 @@ struct Gameplay: View {
                     
                     VStack{
                         if animationViewIn{
-                            Text("Who is Percy Jackson?")
+                            Text(game.currentQuestion.question)
                                 .font(.custom(Constant.hpFont, size: 50))
                                 .multilineTextAlignment(.center)
                                 .padding()
@@ -155,57 +155,53 @@ struct Gameplay: View {
                         .animation(.easeOut(duration: animationViewIn ? 1.5 : 0).delay(animationViewIn ? 2 : 0), value: animationViewIn)
                     }
                     .padding()
-                    
-                    LazyVGrid(columns: [GridItem(), GridItem()]){
-                        ForEach(1..<5) { i in
-                            if tempAnswers[i-1] == true {
-                                VStack{
-                                    if animationViewIn{
-                                        if tappedCorrectAnswer == false{
-                                            Text("Answer \(i)")
-                                                .minimumScaleFactor(0.5)
-                                                .multilineTextAlignment(.center)
-                                                .padding(10)
-                                                .frame(width: geo.size.width/2.15, height: 80)
-                                                .background(.green.opacity(0.5))
-                                                .cornerRadius(25)
-                                                .transition(.asymmetric(insertion: .scale, removal: .scale(scale: 5).combined(with: .opacity.animation(.easeOut(duration: 0.5)))))
-                                                .matchedGeometryEffect(id: "answer", in: namespace)
-                                                .onTapGesture {
-                                                    withAnimation(.easeOut(duration: 1)){
-                                                        tappedCorrectAnswer = true
-                                                    }
-                                                    playCorrectSound()
-                                                }
-                                        }
-                                    }
-                                }
-                                .animation(.easeOut(duration: animationViewIn ? 1 : 0).delay(animationViewIn ? 1.5 : 0), value: animationViewIn)
-                            } else{
-                                VStack{
-                                    if animationViewIn{
-                                        Text("Answer \(i)")
+                    LazyVGrid(columns: [GridItem(), GridItem()]) {
+                        ForEach(Array(game.answers.enumerated()), id: \.offset) { index, answer in
+                            VStack {
+                                if animationViewIn {
+                                    if answer == game.correctAnswer {
+                                        // Correct answer button
+                                        Text(answer)
                                             .minimumScaleFactor(0.5)
                                             .multilineTextAlignment(.center)
                                             .padding(10)
-                                            .frame(width: geo.size.width/2.15, height: 80)
-                                            .background(wrongAnswerTapped.contains(i) ? .red.opacity(0.5) : .green.opacity(0.5))
+                                            .frame(width: geo.size.width / 2.15, height: 80)
+                                            .background(Color.green.opacity(0.8)) // Brighter green for better visibility
                                             .cornerRadius(25)
+                                            .foregroundColor(.white) // White text for contrast
+                                            .transition(.asymmetric(insertion: .scale, removal: .scale(scale: 5).combined(with: .opacity.animation(.easeOut(duration: 0.5)))))
+                                            .matchedGeometryEffect(id: "answer", in: namespace)
+                                            .onTapGesture {
+                                                withAnimation(.easeOut(duration: 1)) {
+                                                    tappedCorrectAnswer = true
+                                                }
+                                                game.correct()
+                                                playCorrectSound()
+                                            }
+                                    } else {
+                                        // Wrong answer button
+                                        Text(answer)
+                                            .minimumScaleFactor(0.5)
+                                            .multilineTextAlignment(.center)
+                                            .padding(10)
+                                            .frame(width: geo.size.width / 2.15, height: 80)
+                                            .background(wrongAnswerTapped.contains(index) ? Color.red.opacity(0.8) : Color.green.opacity(0.5))
+                                            .cornerRadius(25)
+                                            .foregroundColor(.white) // White text for contrast
                                             .transition(.scale)
                                             .onTapGesture {
                                                 withAnimation(.easeOut(duration: 0.3)) {
-                                                    wrongAnswerTapped.append(i)
+                                                    wrongAnswerTapped.append(index)
                                                 }
                                                 playWrongSound()
                                             }
-                                            .scaleEffect(wrongAnswerTapped.contains(i) ? 0.8 : 1)
-                                            .disabled(tappedCorrectAnswer ||  wrongAnswerTapped.contains(i))
+                                            .scaleEffect(wrongAnswerTapped.contains(index) ? 0.8 : 1)
+                                            .disabled(tappedCorrectAnswer || wrongAnswerTapped.contains(index))
                                             .opacity(tappedCorrectAnswer ? 0.1 : 1)
-                                        
                                     }
                                 }
-                                .animation(.easeOut(duration: animationViewIn ? 1 : 0).delay(animationViewIn ? 1.5 : 0), value: animationViewIn)
                             }
+                            .animation(.easeOut(duration: animationViewIn ? 1 : 0).delay(animationViewIn ? 1.5 : 0), value: animationViewIn)
                         }
                     }
                     Spacer()
@@ -304,9 +300,10 @@ struct Gameplay: View {
             }
             .frame(width: geo.size.width, height: geo.size.height)
         }
-        .onAppear{
+        .onAppear {
             animationViewIn = true
-            playMusic()
+//            playMusic()
+            
         }
         .ignoresSafeArea()
     }
