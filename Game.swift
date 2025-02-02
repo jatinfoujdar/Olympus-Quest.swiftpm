@@ -66,11 +66,12 @@ class Game: ObservableObject {
             answers.append(answer)
         }
         answers.shuffle()
+
         questionScore = 5
         
-        // Debug print
-        print("Current Question: \(currentQuestion.question)")
-        print("Answers: \(answers)")
+        
+//        print("Current Question: \(currentQuestion.question)")
+//        print("Answers: \(answers)")
     }
     
     
