@@ -4,7 +4,7 @@ import AVKit
 struct ContentView: View {
     @EnvironmentObject private var game: Game
     
-    @State private var audioPlayer: AVAudioPlayer?
+    @State private var audioPlayer: AVAudioPlayer!
     @State private var scalePlayButton = false
     @State private var moveBackgroundImage = false
     @State private var animateViewIn = false
@@ -117,6 +117,7 @@ struct ContentView: View {
                         VStack {
                             if animateViewIn {
                                 Button {
+                                    game.startGame()
                                     playGame.toggle()
                                 } label: {
                                     Text("Play")
@@ -144,6 +145,12 @@ struct ContentView: View {
                                 .fullScreenCover(isPresented: $playGame) {
                                     Gameplay()
                                         .environmentObject(game)
+                                        .onAppear{
+                                            audioPlayer.setVolume(0, fadeDuration: 2)
+                                        }
+                                        .onDisappear{
+                                            audioPlayer.setVolume(1, fadeDuration: 3)
+                                        }
                                 }
                             }
                         }
@@ -182,7 +189,7 @@ struct ContentView: View {
         .ignoresSafeArea()
         .onAppear {
             animateViewIn = true
-//            playAudio()
+            playAudio()
         }
         .preferredColorScheme(.dark)
     }
