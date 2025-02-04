@@ -3,7 +3,7 @@ import SwiftUI
 
 enum Constant {
     static let hpFont = "PartyLetPlain"
-    
+    static let PJFont = "Savoye LET"
     // Safely load and decode the trivia JSON file
     static let previewQuestion: Question = {
         guard let url = Bundle.main.url(forResource: "trivia", withExtension: "json") else {
@@ -39,3 +39,5 @@ extension Button {
             .foregroundColor(.white)
     }
 }
+
+

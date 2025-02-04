@@ -20,7 +20,7 @@ struct Gameplay: View {
     @State private var revealBooks = false
     @State private var wrongAnswerTapped : [Int] = []
     
- 
+    
     
     var body: some View {
         GeometryReader{geo in
@@ -50,7 +50,7 @@ struct Gameplay: View {
                     VStack{
                         if animationViewIn{
                             Text(game.currentQuestion.question)
-                                .font(.custom(Constant.hpFont, size: 50))
+                                .font(.custom(Constant.PJFont, size: 50))
                                 .multilineTextAlignment(.center)
                                 .padding()
                                 .transition(.scale)
@@ -137,7 +137,7 @@ struct Gameplay: View {
                                             revealBooks = true
                                         }
                                         playFlipSound()
-                                         game.questionScore -= 1
+                                        game.questionScore -= 1
                                     }
                                     .rotation3DEffect(.degrees(revealBooks ? 1440 : 0), axis: (x: 0, y: 1, z: 0))
                                     .scaleEffect(revealBooks ? 5 : 1)
@@ -200,7 +200,7 @@ struct Gameplay: View {
                                                     wrongAnswerTapped.append(index)
                                                 }
                                                 playWrongSound()
-                                                 game.questionScore -= 1
+                                                game.questionScore -= 1
                                             }
                                             .scaleEffect(wrongAnswerTapped.contains(index) ? 0.8 : 1)
                                             .disabled(tappedCorrectAnswer || wrongAnswerTapped.contains(index))
@@ -310,7 +310,7 @@ struct Gameplay: View {
         }
         .onAppear {
             animationViewIn = true
-//            playMusic()
+            playMusic()
             
         }
         .ignoresSafeArea()
@@ -319,7 +319,7 @@ struct Gameplay: View {
     
     
     private func playMusic() {
-        let songs = ["let-the-mystery-unfold", "spellcraft", "hiding-place-in-the-forest", "deep-in-the-dell"]
+        let songs = [ "spellcraft", "fourinone", "hiding-place-in-the-forest", "deep-in-the-dell"]
         
         let i = Int.random(in: 0..<songs.count)  // safer random index generation
         
